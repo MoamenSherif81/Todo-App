@@ -74,4 +74,8 @@ function editEle(ele){
   taskEditInput.classList.toggle('hide');
 }
 
-
+input.addEventListener('keypress', (event) => {
+  if(event.key == 'Enter'){
+    btn.click();
+  }
+})
