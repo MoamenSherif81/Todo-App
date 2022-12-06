@@ -12,7 +12,7 @@ body {
   position: relative;
 }
 
-.container .add_task input[type=text] {
+#task-title {
   background-color: white !important;
   padding: 30px 20px;
   border-radius: 10px;
@@ -112,4 +112,31 @@ body {
   text-align: center;
   color: white;
   font-weight: bolder;
+}
+
+.buttons{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  margin-left: 15px;
+}
+
+.task-title{
+  word-break: break-all;
+}
+
+.edit-task{
+  
+}
+
+@media (max-width: 552px) {
+  #task-title{
+    font-size: 15px;
+  }
+  .no-tasks{
+    font-size: 20px;
+  }
+  .task .buttons{
+    margin-top: 15px;
+  }
 }

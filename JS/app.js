@@ -37,10 +37,11 @@ function removeEle(ele){
   let parent = ele.parentNode.parentNode;
   parent.classList.add('remove');
   parent.addEventListener('animationend', () => {
-    if(parent.nextElementSibling != null)
-    parent.nextElementSibling.remove();
-    else if(parent.previousElementSibling != null)
-    parent.previousElementSibling.remove();
+    if(parent.nextElementSibling != null){
+      parent.nextElementSibling.remove();
+    }else if(parent.previousElementSibling != null){
+      parent.previousElementSibling.remove();
+    }
     parent.remove();
     if(taskCont.children[0] == null){
       taskCont.innerHTML = `<h1 class="no-tasks">No Tasks Yet</h1>`;
