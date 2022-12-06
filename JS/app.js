@@ -54,7 +54,6 @@ function editEle(ele){
   let taskEditInput = parent.children[0].children[1];
   if(taskEditInput.classList.contains('hide')){
     let tasks = document.querySelectorAll('.task');
-    console.log(tasks);
     for(let i = 0; i < tasks.length; i++){
       if(!tasks[i].querySelector('.edit-task').classList.contains('hide')){
         tasks[i].querySelector('.edit-task').classList.toggle('hide');
