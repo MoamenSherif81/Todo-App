@@ -1,0 +1,115 @@
+body {
+  background-image: url('../images/background.jpg');
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.add_task {
+  position: relative;
+}
+
+.container .add_task input[type=text] {
+  background-color: white !important;
+  padding: 30px 20px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 25px;
+}
+
+.container .add_task button {
+  position: absolute;
+  top: 10%;
+  right: 5px;
+  height: 80%;
+  border-radius: 7px;
+}
+
+.tasks{
+  border-radius: 10px;
+  border: 1px white solid;
+  background-color: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(6px);
+  padding: 0 15px;
+}
+
+.task{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12.5px 0;
+  font-size: 20px;
+  transition: .3s;
+}
+
+.show{
+  animation-name: adding;
+  animation-duration: 1s;
+}
+
+.remove{
+  animation-name: removing;
+  animation-duration: .2s;
+}
+
+.task-date{
+  color: white;
+  opacity: .6;
+  font-size: 15px;
+}
+
+.tasks .task .edit-task{
+  padding: 3px;
+  color: white;
+}
+
+@keyframes adding {
+  0%{
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+@keyframes removing {
+  0%{
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}
+
+.task:hover{
+  transform: scale(1.1, 1.05);
+  background-color: white;
+  border-radius: 10px;
+  margin: 8px 0;
+  padding: 15px;
+}
+.task:hover .task-title,
+.task:hover .task-date,
+.tasks .task:hover .edit-task{
+  color: black;
+}
+
+.task-title{
+  color: white;
+  margin: 0;
+}
+
+.no-tasks{
+  margin: 0;
+  margin: 25px 0;
+  text-align: center;
+  color: white;
+  font-weight: bolder;
+}

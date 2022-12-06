@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Todo App</title>
+</head>
+<body>
+  <header>
+    <h1 class="title white-text">Notes App</h1>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row add_task">
+        <input id="task-title" type="text" placeholder="Enter the task name">
+        <button class="btn indigo"  id="add-task">Add Task!</button>
+      </div>
+      <div class="row tasks-cont">
+        <div class="col s12 m10 offset-m1 l8 offset-l2">
+          <div class="tasks z-depth-5">
+            <h1 class="no-tasks">No Tasks Yet</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="JS/materialize.min.js"></script>
+  <script src="JS/app.js"></script>
+</body>
+</html>
