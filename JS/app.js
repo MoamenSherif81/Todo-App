@@ -7,10 +7,10 @@ btn.addEventListener('click', () => {
     Swal.fire({icon: 'error', title: 'Error', text:'Enter the task name!' });
   } else {
     let date = new Date();
-    let newTask = document.createElement('div');
+    let newTask = document.createElement('li');
     newTask.classList.add('task', 'show');
     newTask.innerHTML = `
-      <div>
+      <div class="inputs">
         <div class="task-title">${input.value}</div>
         <input type="text" class="edit-task hide">
         <div class="task-date">${date.toLocaleDateString() + ' ' + date.toLocaleTimeString()}</div>
@@ -19,7 +19,7 @@ btn.addEventListener('click', () => {
         <button class="btn-floating edit-btn" onclick='editEle(this)'><i class="material-icons">edit</i></button>
         <button class="btn-floating remove-btn" onclick='removeEle(this)'><i class="material-icons">close</i></button>
       </div>`;
-    if(taskCont.children[0].className == 'no-tasks') {
+    if(taskCont.children[0].children[0].className == 'no-tasks') {
       taskCont.innerHTML = '';
       taskCont.append(newTask);
     }else{
@@ -44,7 +44,7 @@ function removeEle(ele){
     }
     parent.remove();
     if(taskCont.children[0] == null){
-      taskCont.innerHTML = `<h1 class="no-tasks">No Tasks Yet</h1>`;
+      taskCont.innerHTML = `<li><h1 class="no-tasks">No Tasks Yet</h1></li>`;
     }
   })
 }

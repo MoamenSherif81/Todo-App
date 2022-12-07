@@ -29,12 +29,13 @@ body {
   border-radius: 7px;
 }
 
-.tasks{
+.tasks-cont .tasks{
   border-radius: 10px;
   border: 1px white solid;
   background-color: rgba(0, 0, 0, .5);
   backdrop-filter: blur(6px);
   padding: 0 15px;
+  list-style: none;
 }
 
 .task{
@@ -125,8 +126,9 @@ body {
   word-break: break-all;
 }
 
-.edit-task{
-  
+.inputs{
+  width: 100%;
+  margin-right: 20px;
 }
 
 @media (max-width: 552px) {
