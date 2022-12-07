@@ -4,7 +4,7 @@ let taskCont = document.querySelector('.tasks');
 
 btn.addEventListener('click', () => {
   if(input.value == ''){
-    Swal.fire({icon: 'error', title: 'Error', text:'Enter the task name!' });
+    Swal.fire({icon: 'error', title: 'Error', text:'Enter the task name!'});
   } else {
     let date = new Date();
     let newTask = document.createElement('li');
@@ -12,7 +12,7 @@ btn.addEventListener('click', () => {
     newTask.innerHTML = `
       <div class="inputs">
         <div class="task-title">${input.value}</div>
-        <input type="text" class="edit-task hide">
+        <input type="text" class="edit-task hide" onkeypress="editEnter(event, this)">
         <div class="task-date">${date.toLocaleDateString() + ' ' + date.toLocaleTimeString()}</div>
       </div>
       <div class=buttons>
@@ -79,3 +79,10 @@ input.addEventListener('keypress', (event) => {
     btn.click();
   }
 });
+
+function editEnter(event, ele) {
+  if(event.key == 'Enter'){
+    ele.parentNode.parentNode.children[1].children[0].click();
+  }
+};
+
