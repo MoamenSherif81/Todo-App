@@ -3,7 +3,7 @@ let input = document.getElementById('task-title');
 let taskCont = document.querySelector('.tasks');
 
 btn.addEventListener('click', () => {
-  if(input.value == ''){
+  if(input.value == '' || input.value.trim().length === 0){
     Swal.fire({icon: 'error', title: 'Error', text:'Enter the task name!'});
   } else {
     let date = new Date();
@@ -66,7 +66,11 @@ function editEle(ele){
     taskEditInput.value = taskTitle.innerHTML;
     ele.children[0].innerText = 'done';
   } else {
-    taskTitle.innerHTML = taskEditInput.value;
+    if(taskEditInput.value == '' || taskEditInput.value.trim().length == 0){
+      Swal.fire({icon: 'error', title: 'Error', text:'Enter a valid task name!'});
+    } else {
+      taskTitle.innerHTML = taskEditInput.value;
+    }
     ele.children[0].innerText = 'edit';
   }
   ele.classList.toggle('pulse');
