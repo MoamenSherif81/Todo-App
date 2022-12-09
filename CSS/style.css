@@ -38,13 +38,14 @@ body {
   list-style: none;
 }
 
-.task{
+.task-content{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: .2s;
   padding: 12.5px 0;
   font-size: 20px;
-  transition: .3s;
+  transition: .2s;
 }
 
 .show{
@@ -89,16 +90,20 @@ body {
   }
 }
 
-.task:hover{
+.task{
+  transition: .2s;
+}
+
+.task-content:hover{
   transform: scale(1.1, 1.05);
   background-color: white;
   border-radius: 10px;
   margin: 8px 0;
   padding: 15px;
 }
-.task:hover .task-title,
-.task:hover .task-date,
-.tasks .task:hover .edit-task{
+.task-content:hover .task-title,
+.task-content:hover .task-date,
+.tasks .task-content:hover .edit-task{
   color: black;
 }
 
@@ -142,3 +147,26 @@ body {
     margin-top: 15px;
   }
 }
+
+.filter{
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter p{
+  font-size: 25px;
+  color: white;
+  margin: 0;
+}
+
+.tasks-cont .tasks .filter .filter-input{
+  color: white;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 5px;
+}
+
