@@ -118,7 +118,7 @@ function editEle(ele){
 filterInp.addEventListener('keyup', () =>{
   const tasks = [...taskCont.children];
   for(let i = 2; i < tasks.length; i++){
-    if(!tasks[i].children[1].firstElementChild.innerText.toLowerCase().includes(filterInp.value.toLowerCase())){
+    if(!tasks[i].children[1].firstElementChild.firstElementChild.textContent.toLowerCase().includes(filterInp.value.toLowerCase())){
       tasks[i].classList.add('hide');
     } else{
       tasks[i].children[1].classList.remove('show');
