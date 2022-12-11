@@ -29,12 +29,15 @@ body {
   border-radius: 7px;
 }
 
-.tasks-cont .tasks{
+.Todo-container .tasks{
   border-radius: 10px;
   border: 1px white solid;
   background-color: rgba(0, 0, 0, .5);
   backdrop-filter: blur(6px);
   padding: 0 15px;
+}
+
+.Todo-container .tasks ul{
   list-style: none;
 }
 
@@ -101,15 +104,25 @@ body {
   margin: 8px 0;
   padding: 15px;
 }
-.task-content:hover .task-title,
+.task-content:hover .title-text,
 .task-content:hover .task-date,
 .tasks .task-content:hover .edit-task{
   color: black;
 }
 
-.task-title{
+.title-text{
   color: white;
   margin: 0;
+  word-break: break-all;
+}
+
+.task-title{
+  display: flex;
+  align-items: center;
+}
+
+.task-checbox{
+  margin-top: 4px;
 }
 
 .no-tasks{
@@ -118,6 +131,7 @@ body {
   text-align: center;
   color: white;
   font-weight: bolder;
+  font-size: 30px;
 }
 
 .buttons{
@@ -127,9 +141,6 @@ body {
   margin-left: 15px;
 }
 
-.task-title{
-  word-break: break-all;
-}
 
 .inputs{
   width: 100%;
@@ -161,7 +172,7 @@ body {
   margin: 0;
 }
 
-.tasks-cont .tasks .filter .filter-input{
+.Todo-container .tasks .filter .filter-input{
   color: white;
   padding: 5px;
   width: 100%;
@@ -170,3 +181,16 @@ body {
   border-radius: 5px;
 }
 
+.title-text{
+  font-size: 20px;
+  color: white;
+}
+
+.completed-title{
+  color: white;
+  font-weight: bolder;
+}
+
+.no-pointer-events{
+  pointer-events: none;
+}

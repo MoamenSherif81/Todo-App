@@ -26,15 +26,28 @@
           />
           <button class="btn indigo" id="add-task">Add Task!</button>
         </div>
-        <div class="row tasks-cont">
+        <div class="row Todo-container">
           <div class="col s12 m10 offset-m1 l8 offset-l2">
-            <ul class="tasks z-depth-5">
-              <li class="filter hide">
+            <div class="tasks z-depth-5">
+              <div class="filter hide">
                 <p>Filter: </p>
                 <input type="text" id="filter-input" class="filter-input" placeholder="Enter your filter text">
-              </li>
-              <li><h1 class="no-tasks">No Tasks</h1></li>
-            </ul>
+              </div>
+              <div><h1 class="no-tasks">Nothing to do for now</h1></div>
+              <div class="ongoing-nothing hide"><h1 class="no-tasks">Nothing found</h1></div>
+              <ul class="ongoing-tasks">
+              </ul>
+              <div class="complete-cont hide">
+                <div class="divider"></div>
+                <div class="completed-title">
+                  <h4>Completed: </h4>
+                </div>
+                <div class="complete-nothing hide"><h1 class="no-tasks">Nothing found</h1></div>
+                <div><h1 class="no-tasks">No completed Tasks</h1></div>
+                <ul class="completed-tasks">
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
