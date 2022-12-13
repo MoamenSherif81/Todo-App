@@ -141,22 +141,9 @@ body {
   margin-left: 15px;
 }
 
-
 .inputs{
   width: 100%;
   margin-right: 20px;
-}
-
-@media (max-width: 552px) {
-  #task-title{
-    font-size: 15px;
-  }
-  .no-tasks{
-    font-size: 20px;
-  }
-  .task .buttons{
-    margin-top: 15px;
-  }
 }
 
 .filter{
@@ -193,4 +180,13 @@ body {
 
 .no-pointer-events{
   pointer-events: none;
+}
+
+@media (max-width: 552px) {
+  #task-title, .title-text{font-size: 15px;}
+  .no-tasks{font-size: 20px;}
+  .task .buttons{margin-top: 0;}
+  .task-checbox{margin-top: 7px;}
+  .inputs .task-title .task-checbox span{padding-left: 25px;}
+  .task-date{font-size: 10px;}
 }
