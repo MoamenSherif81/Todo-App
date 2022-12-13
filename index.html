@@ -6,10 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="CSS/style.css" />
     <link rel="stylesheet" href="CSS/materialize.min.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <title>Todo App</title>
   </head>
   <body>
@@ -30,22 +27,23 @@
           <div class="col s12 m10 offset-m1 l8 offset-l2">
             <div class="tasks z-depth-5">
               <div class="filter hide">
-                <p>Filter: </p>
-                <input type="text" id="filter-input" class="filter-input" placeholder="Enter your filter text">
+                <p>Filter:</p>
+                <input
+                  type="text"
+                  id="filter-input"
+                  class="filter-input"
+                  placeholder="Enter your filter text"
+                />
               </div>
-              <div><h1 class="no-tasks">Nothing to do for now</h1></div>
-              <div class="ongoing-nothing hide"><h1 class="no-tasks">Nothing found</h1></div>
-              <ul class="ongoing-tasks">
-              </ul>
+              <h1 class="no-tasks">Nothing to do for now</h1>
+              <h1 class="ongoing-nothing hide no-tasks">Nothing found</h1>
+              <ul class="ongoing-tasks"></ul>
               <div class="complete-cont hide">
                 <div class="divider"></div>
-                <div class="completed-title">
-                  <h4>Completed: </h4>
-                </div>
-                <div class="complete-nothing hide"><h1 class="no-tasks">Nothing found</h1></div>
-                <div><h1 class="no-tasks">No completed Tasks</h1></div>
-                <ul class="completed-tasks">
-                </ul>
+                <h4 class="completed-title">Completed:</h4>
+                <h1 class="complete-nothing hide no-tasks">Nothing found</h1>
+                <h1 class="no-tasks">No completed Tasks</h1>
+                <ul class="completed-tasks"></ul>
               </div>
             </div>
           </div>
