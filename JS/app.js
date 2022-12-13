@@ -13,30 +13,34 @@ input.focus();
 
 window.addEventListener('load', () =>{
   if(TasksArr.length != 0){
-    TasksArr.forEach((element) => {
+    TasksArr.forEach((task) => {
       const newTask = document.createElement('li');
       newTask.classList.add('task');
-      newTask.setAttribute('taskId', element.id);
+      newTask.setAttribute('taskId', task.id);
       newTask.innerHTML = `
         <div class="divider"></div>
         <div class="task-content">
           <div class="inputs">
             <div class="task-title">
               <label class="task-checbox">
-                <input type="checkbox" ${element.checked ? 'checked' : ''} onclick="MarkCompleted(this)"/>
+                <input type="checkbox" ${task.checked ? 'checked' : ''} onclick="MarkCompleted(this)"/>
                 <span></span>
               </label>
-              <span style="text-decoration:${element.checked ? 'line-through' : 'none'}" class="title-text">${element.title}</span>
+              <span style="text-decoration:${task.checked ? 'line-through' : 'none'}" class="title-text">${task.title}</span>
             </div>
             <input type="text" class="edit-task hide" onkeypress="editEnter(event, this)">
-            <div class="task-date">${element.date}</div>
+            <div class="task-date">${task.date}</div>
           </div>
           <div class=buttons>
-            <button class="btn-floating edit-btn" onclick='editEle(this)'><i class="material-icons">edit</i></button>
-            <button class="btn-floating remove-btn" onclick='removeEle(this)'><i class="material-icons">close</i></button>
+            <button class="btn-floating edit-btn" onclick='editEle(this)'>
+              <i class="material-icons">edit</i>
+            </button>
+            <button class="btn-floating remove-btn" onclick='removeEle(this)'>
+              <i class="material-icons">close</i>
+            </button>
           </div>
         </div>`;
-      if(element.checked){
+      if(task.checked){
         completedTasks.append(newTask);
         if(completedTasks.children.length == 1){
           completedTasks.firstElementChild.firstElementChild.classList.add('hide');
@@ -72,8 +76,12 @@ btn.addEventListener('click', () => {
           <div class="task-date">${date.toLocaleDateString() + ' ' + date.toLocaleTimeString()}</div>
         </div>
         <div class=buttons>
-          <button class="btn-floating edit-btn" onclick='editEle(this)'><i class="material-icons">edit</i></button>
-          <button class="btn-floating remove-btn" onclick='removeEle(this)'><i class="material-icons">close</i></button>
+          <button class="btn-floating edit-btn" onclick='editEle(this)'>
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="btn-floating remove-btn" onclick='removeEle(this)'>
+            <i class="material-icons">close</i>
+          </button>
         </div>
       </div>`;
     ongoingTasks.append(newTask);
@@ -86,22 +94,22 @@ btn.addEventListener('click', () => {
   check();
 });
 
-function removeEle(ele){
-  const parent = ele.parentNode.parentNode.parentNode;
-  parent.lastElementChild.classList.add('remove');
-  parent.lastElementChild.addEventListener('animationend', () => {
-    const taskId = TasksArr.findIndex(item => item.id == parent.getAttribute('taskId'));
-    TasksArr.splice(taskId, 1);
+function removeEle(removeBtn){
+  const task = removeBtn.parentNode.parentNode.parentNode;
+  task.lastElementChild.classList.add('remove');
+  task.lastElementChild.addEventListener('animationend', () => {
+    const taskInd = TasksArr.findIndex((item) => item.id == task.getAttribute('taskId'));
+    TasksArr.splice(taskInd, 1);
     window.localStorage.setItem('TasksArr', JSON.stringify(TasksArr));
-    parent.remove();
+    task.remove();
     check();
   })
 }
 
-function editEle(ele){
-  const parent = ele.parentNode.parentNode;
-  const taskTitle = parent.querySelector('.title-text');
-  const taskEditInput = parent.children[0].children[1];
+function editEle(editBtn){
+  const taskContent = editBtn.parentNode.parentNode;
+  const taskTitle = taskContent.querySelector('.title-text');
+  const taskEditInput = taskContent.children[0].children[1];
   if(taskEditInput.classList.contains('hide')){
     const tasks = document.querySelectorAll('.task');
     for(let i = 0; i < tasks.length; i++){
@@ -113,76 +121,79 @@ function editEle(ele){
       }
     }
     taskEditInput.value = taskTitle.innerHTML;
-    ele.children[0].innerText = 'done';
+    editBtn.children[0].innerText = 'done';
   } else {
     if(taskEditInput.value.trim().length == 0){
       Swal.fire({icon: 'error', title: 'Error', text:'Enter a valid task name!'});
     } else {
       taskTitle.innerHTML = taskEditInput.value;
-      const taskId = TasksArr.findIndex(item => item.id == parent.parentNode.getAttribute('taskId'));
-      TasksArr[taskId].title = taskEditInput.value;
+      const taskInd = TasksArr.findIndex(item => item.id == taskContent.parentNode.getAttribute('taskId'));
+      TasksArr[taskInd].title = taskEditInput.value;
       window.localStorage.setItem('TasksArr', JSON.stringify(TasksArr));
     }
-    ele.children[0].innerText = 'edit';
+    editBtn.children[0].innerText = 'edit';
   }
-  ele.classList.toggle('pulse');
+  editBtn.classList.toggle('pulse');
   taskEditInput.classList.toggle('hide');
   taskEditInput.focus();
-  parent.querySelector('.task-title').classList.toggle('hide');
+  taskContent.querySelector('.task-title').classList.toggle('hide');
 }
 
 filterInp.addEventListener('keyup', () =>{
   const tasks = [...ongoingTasks.children];
   const comTasks = [...completedTasks.children];
-  let cnt1 = 0, cnt2 = 0;
+  let onGoingCounter = 0, completedCounter = 0;
   for(let i = 0; i < tasks.length; i++){
     const taskTitle = tasks[i].querySelector('.title-text');
-    if(!taskTitle.textContent.toLowerCase().includes(filterInp.value.toLowerCase())){
+    if(!taskTitle.textContent.toLowerCase().includes(filterInp.value.toLowerCase()) && filterInp.value.trim() != ''){
       tasks[i].classList.add('hide');
-      cnt1++;
+      onGoingCounter++;
     } else{
       tasks[i].children[1].classList.remove('show');
       tasks[i].classList.remove('hide');
     }
   }
   for(let i = 0; i < comTasks.length; i++){
-    if(!comTasks[i].children[1].firstElementChild.firstElementChild.textContent.toLowerCase().includes(filterInp.value.toLowerCase())){
+    const taskTitle = comTasks[i].querySelector('title-text');
+    if(!taskTitle.textContent.toLowerCase().includes(filterInp.value.toLowerCase()) && filterInp.value.trim() != ''){
       comTasks[i].classList.add('hide');
-      cnt2++;
+      completedCounter++;
     } else{
       comTasks[i].children[1].classList.remove('show');
       comTasks[i].classList.remove('hide');
     }
   }
   if(tasks.length != 0){
-    if(cnt1 == tasks.length){
+    if(onGoingCounter == tasks.length)
       ongoingNothing.classList.remove('hide');
-    } else ongoingNothing.classList.add('hide');
+    else
+      ongoingNothing.classList.add('hide');
   }
   if(comTasks.length != 0){
-    if(cnt2 == comTasks.length){
+    if(completedCounter == comTasks.length)
       completeNothing.classList.remove('hide');
-    } else completeNothing.classList.add('hide');
+    else
+      completeNothing.classList.add('hide');
   }
 
   check();
 })
 
-function MarkCompleted(element){
-  const parent = element.parentNode.parentNode.parentNode.parentNode.parentNode;
-  const taskId = TasksArr.findIndex(item => item.id == parent.getAttribute('taskId'));
-  const taskTitle = element.parentNode.nextElementSibling;
-  if(element.checked == true){
+function MarkCompleted(checkBox){
+  const task = checkBox.parentNode.parentNode.parentNode.parentNode.parentNode;
+  const taskInd = TasksArr.findIndex(item => item.id == task.getAttribute('taskId'));
+  const taskTitle = checkBox.parentNode.nextElementSibling;
+  if(checkBox.checked == true){
     taskTitle.style.textDecoration = 'line-through';
-    TasksArr[taskId].checked = true;
-    completedTasks.append(parent);
+    TasksArr[taskInd].checked = true;
+    completedTasks.append(task);
   } else {
     taskTitle.style.textDecoration = 'none';
-    TasksArr[taskId].checked = false;
-    if(completedTasks.children[0] == parent){
+    TasksArr[taskInd].checked = false;
+    if(completedTasks.children[0] == task){
       completedTasks.firstElementChild.firstElementChild.classList.remove('hide');
     }
-    ongoingTasks.append(parent);
+    ongoingTasks.append(task);
   }
   check();
   window.localStorage.setItem('TasksArr', JSON.stringify(TasksArr));
@@ -192,8 +203,8 @@ input.addEventListener('keypress', (event) => {
   if(event.key == 'Enter') btn.click();
 });
 
-function editEnter(event, ele) {
-  if(event.key == 'Enter') ele.parentNode.parentNode.children[1].children[0].click();
+function editEnter(event, editInput) {
+  if(event.key == 'Enter') editInput.parentNode.parentNode.querySelector('.edit-btn').click();
 };
 
 function check(){
