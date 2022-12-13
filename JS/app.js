@@ -9,7 +9,7 @@ const filterCont = document.querySelector('.filter');
 const filterInp = document.querySelector('.filter-input');
 let TasksArr;
 if(window.localStorage['number'] == undefined) window.localStorage['number'] = 0;
-TasksArr = JSON.parse(localStorage.getItem("TasksArr") || "[]");
+TasksArr = JSON.parse(localStorage.getItem("TasksArr") || '[]');
 input.focus();
 
 window.addEventListener('load', () =>{
@@ -83,7 +83,6 @@ btn.addEventListener('click', () => {
     ongoingTasks.append(newTask);
     TasksArr.push({id: (window.localStorage.number)-1, title: input.value, date: date.toLocaleDateString() + ' ' + date.toLocaleTimeString(), checked: false});
     window.localStorage['TasksArr'] = JSON.stringify(TasksArr);
-    console.log(TasksArr);
     input.value = '';
     input.focus(); 
   }
@@ -149,6 +148,9 @@ function editEle(ele){
       Swal.fire({icon: 'error', title: 'Error', text:'Enter a valid task name!'});
     } else {
       taskTitle.innerHTML = taskEditInput.value;
+      const taskId = TasksArr.findIndex(item => item.id == parent.parentNode.getAttribute('taskId'));
+      TasksArr[taskId].title = taskEditInput.value;
+      window.localStorage.setItem('TasksArr', JSON.stringify(TasksArr));
     }
     ele.children[0].innerText = 'edit';
   }
