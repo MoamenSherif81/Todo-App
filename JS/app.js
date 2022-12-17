@@ -154,7 +154,7 @@ filterInp.addEventListener('keyup', () =>{
     }
   }
   for(let i = 0; i < comTasks.length; i++){
-    const taskTitle = comTasks[i].querySelector('title-text');
+    const taskTitle = comTasks[i].querySelector('.title-text');
     if(!taskTitle.textContent.toLowerCase().includes(filterInp.value.toLowerCase()) && filterInp.value.trim() != ''){
       comTasks[i].classList.add('hide');
       completedCounter++;
